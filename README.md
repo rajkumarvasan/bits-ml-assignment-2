@@ -1,9 +1,9 @@
 
 
 ##  1. Problem Statement
-Determining whether a wild mushroom is safe to eat or highly toxic is a critical challenge requiring 100% predictive accuracy. The objective of this project is to build an automated, interpretable classification framework that evaluates different machine learning models to correctly classify mushrooms as either **Edible (`e`)** or **Poisonous (`p`)** based on their observable physical characteristics. 
+Determining whether a wild mushroom is safe to eat or highly toxic is a critical challenge requiring 100% predictive accuracy. The objective of this project is to build an automated, interpretable classification framework that evaluates different machine learning models to correctly classify mushrooms as either **Edible (e)** or **Poisonous (p)** based on their observable physical characteristics. 
 
-By separating data preprocessing from application deployment and preserving model weights, this platform offers a fast, memory-efficient way to validate classification models on new test data without risking data leakage or runtime crashes.
+By separating data preprocessing from application deployment and preserving model weights, this solution offers a fast, memory-efficient way to validate classification models on new test data without risking data leakage.
 
 ---
 
@@ -28,12 +28,11 @@ Explore the source code, training pipelines, and deployment files here:
 ---
 
 ## 4. Models Used
-To ensure a robust comparative evaluation, five distinct machine learning classification algorithms are preserved as serialized `.joblib` files within the `model/` folder:
 
 1. **Random Forest Classifier**: An ensemble tree method providing high accuracy and feature importance rankings.
-2. **Decision Tree Classifier**: A clear, interpretable flowchart-style model used as a strong structure baseline.
-3. **Logistic Regression**: A robust linear model optimized with high iterations to map categorical probability boundaries.
-4. **K-Nearest Neighbors (KNN)**: A distance-based classifier that categorizes samples based on the majority vote of their closest data points in the feature space.
+2. **Decision Tree Classifier**: A clear, interpretable flowchart style or Decision rule model used as a strong structure baseline.
+3. **Logistic Regression**: A linear model optimized with high iterations to map categorical probability boundaries.
+4. **K-Nearest Neighbors (KNN)**: A distance based classifier that categorizes samples based on the majority vote of their closest data points in the feature space.
 5. **Naive Bayes (CategoricalNB)**: A probabilistic classifier based on Bayes' theorem, specifically optimized to handle independent categorical feature distributions.
 
 ---
@@ -44,19 +43,20 @@ To ensure a robust comparative evaluation, five distinct machine learning classi
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Random Forest Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
 | **Decision Tree Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
-| **Logistic Regression** | 96.55% | 99.41% | 96.59% | 96.51% | 96.55% | 0.9310 |
-| **K-Nearest Neighbors (KNN)** | 99.85% | 99.98% | 99.85% | 99.85% | 99.85% | 0.9970 |
-| **Naive Bayes (CategoricalNB)** | 95.81% | 98.92% | 95.95% | 95.73% | 95.80% | 0.9164 |
+| **Logistic Regression** | 95.32% | 98.34% | 94.80% | 95.52% | 95.16% | 0.9064 |
+| **K-Nearest Neighbors (KNN)** | 99.82% | 100.00% | 99.62% | 100.00% | 99.81% | 0.9963 |
+| **Naive Bayes (CategoricalNB)** | 95.08% | 99.75% | 98.75% | 90.92% | 94.67% | 0.9038 |
 | 
 
 ### 6. Model Performance Observations
 
 | ML Model Name | Observation about model performance |
 | :--- | :--- |
-| **Logistic Regression** | Performs very strongly (~96.5%) but falls slightly short of a perfect score due to its strict linearity assumption, which cannot fully capture complex multi-column interaction boundaries natively without manual feature engineering. |
-| **Decision Tree** | Achieves a flawless 100% accuracy and AUC score. This dataset contains highly deterministic rule-based structures (e.g., specific combinations of 'odor' and 'gill-color' provide perfect splits), allowing a single tree to map the classes perfectly. |
-| **kNN** | Yields near-perfect performance (~99.8%). Because poisonous and edible mushrooms exhibit tight, highly distinct visual and spatial cluster groups within the categorical attribute matrix, test instances match their nearest neighbors cleanly. |
-| **Naive Bayes** | Obtains the lowest relative scores (~95.8%). This happens because the model relies on a strict assumption of conditional independence among all features, whereas mushroom characteristics (like stalk features and ring types) share strong natural correlations. |
-| **Random Forest (Ensemble)** | Achieves a perfect 100% across all performance metrics. By combining multiple independent decision trees through bagging, it eliminates any individual tree variance and natively handles the categorical categorical mappings flawlessly. |
-| **Overall Winner for your dataset?** | **Random Forest (Ensemble)** and **Decision Tree**. Both models handle categorical decision rules natively, score a perfect 100% across all metrics, and do not suffer from the independence or linearity limitations of the other models. |
+| **Logistic Regression** | Achieves a solid 95.32% accuracy and 0.9064 MCC. While highly performant, it is restricted by its linear decision boundaries, missing roughly 4.68% of complex structural combinations within the mushroom feature mappings. |
+| **Decision Tree** | Reaches a perfect 100.00% across all metrics (Accuracy, AUC, F1, and a 1.0000 MCC). This indicates the dataset possesses definitive rule-based conditional splits that a single tree maps flawlessly. |
+| **kNN** | Delivers an outstanding 99.82% accuracy and a perfect 100.00% Recall score. This reveals that different mushroom classes occupy highly distinct, dense geometric clusters in the categorical feature space, enabling flawless matching with nearest neighbors. |
+| **Naive Bayes** | Yields a high 99.75% AUC and strong 98.75% Precision, but suffers from the lowest Recall at 90.92% and the lowest MCC at 0.9038. The lower recall indicates that the strict feature independence assumption forces the model to make dangerous false negative errors. |
+| **Random Forest (Ensemble)** | Achieves an absolute 100.00% on every single evaluation metric. By combining an ensemble of randomized trees through bagging, it completely eliminates variance and maps the categorical features without any risk of overfitting. |
+| **Overall Winner for your dataset?** | **Random Forest Classifier** and **Decision Tree Classifier**. Both models natively handle categorical rule structures, achieve a perfect 100.00% accuracy, and gets an unmatched MCC score of 1.0000. |
+
 
