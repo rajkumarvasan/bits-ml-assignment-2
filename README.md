@@ -56,7 +56,7 @@ To compare the models fairly, five machine learning classification algorithms ar
 | **Logistic Regression** | It performs well with 95.32% accuracy, but since it works best with straight-line patterns, it misses some of the more complex patterns in the data. |
 | **Decision Tree** | It gets 100% on all metrics, which suggests the mushroom data has clear rule-based patterns that a single tree can learn easily. |
 | **kNN** | 	It is almost perfect with 99.82% accuracy and identifies the target class correctly every time, showing that similar mushrooms are very close to each other in the dataset. |
-| **Naive Bayes** | t has a high 99.75% AUC, but its Recall is only 90.92%. Because it assumes all features are independent, it sometimes makes unsafe mistakes and classifies poisonous mushrooms as edible. |
+| **Naive Bayes** | It has a high 99.75% AUC, but its Recall is only 90.92%. Because it assumes all features are independent, it sometimes makes unsafe mistakes and classifies poisonous mushrooms as edible. |
 | **Random Forest (Ensemble)** | It achieves 100% across all scores. By combining many trees, it avoids small mistakes and handles the dataset very well.|
 | **Overall Winner for your dataset?** | **Random Forest (Ensemble)** and **Decision Tree**. Both models got a perfect 100% score across the board because they are naturally great at handling categorical data rules. |
 
