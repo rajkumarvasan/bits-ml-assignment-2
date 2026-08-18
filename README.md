@@ -1,9 +1,9 @@
 
 
 ##  1. Problem Statement
-Determining whether a wild mushroom is safe to eat or highly toxic is a critical challenge requiring 100% predictive accuracy. The objective of this project is to build an automated, interpretable classification framework that evaluates different machine learning models to correctly classify mushrooms as either **Edible (e)** or **Poisonous (p)** based on their observable physical characteristics. 
+It is very important to know whether a wild mushroom is safe to eat or poisonous, because a wrong prediction could be dangerous. The goal of this project is to build a machine learning system that can accurately classify mushrooms as **Edible (`e`)** or **Poisonous (`p`)** using their visible physical features.
 
-By separating data preprocessing from application deployment and preserving model weights, this solution offers a fast, memory-efficient way to validate classification models on new test data without risking data leakage.
+To make the system efficient and reliable, data preprocessing is kept separate from model deployment, and the trained model weights are saved. This allows new test data to be checked quickly without data leakage or running into errors during execution.
 
 ---
 
@@ -17,7 +17,7 @@ This project utilizes the well-known **UCI Mushroom Dataset**. The dataset consi
   * **Stalk properties:** shape, root type, surface above/below ring, colour above/below ring
   * **Other identifiers:** bruises, odour, gill attachment, gill spacing, gill size, gill colour, veil type, veil colour, ring number, ring type, spore print colour, population, and habitat.
 
-*Note: All features are entirely categorical strings, which are handled via an independent, pre-trained multi-column `OrdinalEncoder` mapping.*
+*Note: All features are categorical strings, which are handled through an independent, pre-trained multi-column `OrdinalEncoder` mapping.*
 
 ---
 
@@ -28,11 +28,12 @@ Explore the source code, training pipelines, and deployment files here:
 ---
 
 ## 4. Models Used
+To compare the models fairly, five machine learning classification algorithms are saved as `.joblib` files within the `model/` folder:
 
-1. **Random Forest Classifier**: An ensemble tree method providing high accuracy and feature importance rankings.
-2. **Decision Tree Classifier**: A clear, interpretable flowchart style or Decision rule model used as a strong structure baseline.
-3. **Logistic Regression**: A linear model optimized with high iterations to map categorical probability boundaries.
-4. **K-Nearest Neighbors (KNN)**: A distance based classifier that categorizes samples based on the majority vote of their closest data points in the feature space.
+1. **Random Forest Classifier**: An ensemble model that usually gives high accuracy and shows which features matter most.
+2. **Decision Tree Classifier**: A simple, easy-to-understand model that works like a flowchart.
+3. **Logistic Regression**: A reliable linear model that is often used for classification problems.
+4. **K-Nearest Neighbors (KNN)**: A model that classifies a sample based on the labels of its nearest neighbors.
 5. **Naive Bayes (CategoricalNB)**: A probabilistic classifier based on Bayes' theorem, specifically optimized to handle independent categorical feature distributions.
 
 ---
@@ -43,20 +44,19 @@ Explore the source code, training pipelines, and deployment files here:
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Random Forest Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
 | **Decision Tree Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
-| **Logistic Regression** | 95.32% | 98.34% | 94.80% | 95.52% | 95.16% | 0.9064 |
-| **K-Nearest Neighbors (KNN)** | 99.82% | 100.00% | 99.62% | 100.00% | 99.81% | 0.9963 |
-| **Naive Bayes (CategoricalNB)** | 95.08% | 99.75% | 98.75% | 90.92% | 94.67% | 0.9038 |
+| **Logistic Regression** | 96.55% | 99.41% | 96.59% | 96.51% | 96.55% | 0.9310 |
+| **K-Nearest Neighbors (KNN)** | 99.85% | 99.98% | 99.85% | 99.85% | 99.85% | 0.9970 |
+| **Naive Bayes (CategoricalNB)** | 95.81% | 98.92% | 95.95% | 95.73% | 95.80% | 0.9164 |
 | 
 
 ### 6. Model Performance Observations
 
 | ML Model Name | Observation about model performance |
 | :--- | :--- |
-| **Logistic Regression** | Achieves a solid 95.32% accuracy and 0.9064 MCC. While highly performant, it is restricted by its linear decision boundaries, missing roughly 4.68% of complex structural combinations within the mushroom feature mappings. |
-| **Decision Tree** | Reaches a perfect 100.00% across all metrics (Accuracy, AUC, F1, and a 1.0000 MCC). This indicates the dataset possesses definitive rule-based conditional splits that a single tree maps flawlessly. |
-| **kNN** | Delivers an outstanding 99.82% accuracy and a perfect 100.00% Recall score. This reveals that different mushroom classes occupy highly distinct, dense geometric clusters in the categorical feature space, enabling flawless matching with nearest neighbors. |
-| **Naive Bayes** | Yields a high 99.75% AUC and strong 98.75% Precision, but suffers from the lowest Recall at 90.92% and the lowest MCC at 0.9038. The lower recall indicates that the strict feature independence assumption forces the model to make dangerous false negative errors. |
-| **Random Forest (Ensemble)** | Achieves an absolute 100.00% on every single evaluation metric. By combining an ensemble of randomized trees through bagging, it completely eliminates variance and maps the categorical features without any risk of overfitting. |
-| **Overall Winner for your dataset?** | **Random Forest Classifier** and **Decision Tree Classifier**. Both models natively handle categorical rule structures, achieve a perfect 100.00% accuracy, and gets an unmatched MCC score of 1.0000. |
-
+| **Logistic Regression** | It performs well with 95.32% accuracy, but since it works best with straight-line patterns, it misses some of the more complex patterns in the data. |
+| **Decision Tree** | It gets 100% on all metrics, which suggests the mushroom data has clear rule-based patterns that a single tree can learn easily. |
+| **kNN** | 	It is almost perfect with 99.82% accuracy and identifies the target class correctly every time, showing that similar mushrooms are very close to each other in the dataset. |
+| **Naive Bayes** | t has a high 99.75% AUC, but its Recall is only 90.92%. Because it assumes all features are independent, it sometimes makes unsafe mistakes and classifies poisonous mushrooms as edible. |
+| **Random Forest (Ensemble)** | It achieves 100% across all scores. By combining many trees, it avoids small mistakes and handles the dataset very well.|
+| **Overall Winner for your dataset?** | **Random Forest (Ensemble)** and **Decision Tree**. Both models got a perfect 100% score across the board because they are naturally great at handling categorical data rules. |
 
