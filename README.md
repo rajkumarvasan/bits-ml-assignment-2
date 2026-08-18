@@ -42,11 +42,11 @@ To compare the models fairly, five machine learning classification algorithms ar
 
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Random Forest Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
+| **Logistic Regression** | 95.32% | 98.34% | 94.80% | 95.52% | 95.16% | 0.9064 |
 | **Decision Tree Classifier** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
-| **Logistic Regression** | 96.55% | 99.41% | 96.59% | 96.51% | 96.55% | 0.9310 |
-| **K-Nearest Neighbors (KNN)** | 99.85% | 99.98% | 99.85% | 99.85% | 99.85% | 0.9970 |
-| **Naive Bayes (CategoricalNB)** | 95.81% | 98.92% | 95.95% | 95.73% | 95.80% | 0.9164 |
+| **K-Nearest Neighbors (KNN)** | 99.82% | 100.00% | 99.62% | 100.00% | 99.81% | 0.9963 |
+| **Naive Bayes (CategoricalNB)** | 95.08% | 99.75% | 98.75% | 90.92% | 94.67% | 0.9038 |
+| **Random Forest (Ensemble)** | 100.00% | 100.00% | 100.00% | 100.00% | 100.00% | 1.0000 |
 | 
 
 ### 6. Model Performance Observations
